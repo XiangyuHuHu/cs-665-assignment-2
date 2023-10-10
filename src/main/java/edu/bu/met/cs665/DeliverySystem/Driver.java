@@ -1,5 +1,11 @@
 package edu.bu.met.cs665.DeliverySystem;
-
+/**
+ * Name: Xiangyu Hu
+ * Course: CS-665 Software Designs & Patterns
+ * Date: 10/10/2023
+ * File Name: Driver.java
+ * Description: this class is about set the driver information.
+ */
 public class Driver {
     DeliveryRequest order;
     String name;

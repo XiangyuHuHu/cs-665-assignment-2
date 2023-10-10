@@ -1,5 +1,11 @@
 package edu.bu.met.cs665.DeliverySystem;
-
+/**
+ * Name: Xiangyu Hu
+ * Course: CS-665 Software Designs & Patterns
+ * Date: 10/10/2023
+ * File Name: Main.java
+ * Description: they main step for this program. some function is for test and check the correctness.
+ */
 import java.util.List;
 
 public class Main {
@@ -8,14 +14,15 @@ public class Main {
         Shop shop = new Shop("Shop A");
 
         // Create a delivery request
-        DeliveryRequest deliveryRequest = new DeliveryRequest(1, "Car", "John Doe", "Product X", "123 Main St");
+        DeliveryRequest deliveryRequest = new DeliveryRequest(1, "Car", "Product X", "123 Main St");
 
         // Add the delivery request to the shop
         shop.addDeliveryRequest(deliveryRequest);
 
         // List the orders in the shop
-        System.out.println("Orders in " + shop.getName() + ":");
-        shop.listOrders();
+        System.out.println(deliveryRequest);
+        deliveryRequest.printInfo();
+
 
         // Create drivers
         Driver driver1 = new Driver("Driver 1", "Car");

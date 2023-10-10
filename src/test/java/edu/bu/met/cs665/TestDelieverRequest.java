@@ -30,7 +30,7 @@ public class TestDelieverRequest {
     @Test
     public void testAddDeliveryRequest() {
         Shop shop = new Shop("Shop A");
-        DeliveryRequest deliveryRequest = new DeliveryRequest(1, "Car", "John Doe", "Product X", "123 Main St");
+        DeliveryRequest deliveryRequest = new DeliveryRequest(1, "Car",  "Product X", "123 Main St");
         shop.addDeliveryRequest(deliveryRequest);
 
         assertEquals(1, shop.getOrders().size());
@@ -54,7 +54,6 @@ public class TestDelieverRequest {
         shop.addDriver(driver5);
 
         List<Driver> availableDrivers = shop.getAvailableDrivers();
-        System.out.println(availableDrivers);
         assertEquals(4, availableDrivers.size());
         assertTrue(availableDrivers.contains(driver1));
         assertFalse(availableDrivers.contains(driver2));
@@ -62,13 +61,13 @@ public class TestDelieverRequest {
     }
     @Test
     public void testGetOrderNumber() {
-        DeliveryRequest deliveryRequest = new DeliveryRequest(1, "Car", "John Doe", "Product X", "123 Main St");
+        DeliveryRequest deliveryRequest = new DeliveryRequest(1, "Car",  "Product X", "123 Main St");
         assertEquals(1, deliveryRequest.getOrderNumber());
     }
 
     @Test
     public void testCheckStatus() {
-        DeliveryRequest deliveryRequest = new DeliveryRequest(1, "Car", "John Doe", "Product X", "123 Main St");
+        DeliveryRequest deliveryRequest = new DeliveryRequest(1, "Car",  "Product X", "123 Main St");
         assertFalse(deliveryRequest.checkStatus());
 
         deliveryRequest.picked();
@@ -77,13 +76,13 @@ public class TestDelieverRequest {
 
     @Test
     public void testGetCar() {
-        DeliveryRequest deliveryRequest = new DeliveryRequest(1, "Car", "John Doe", "Product X", "123 Main St");
+        DeliveryRequest deliveryRequest = new DeliveryRequest(1, "Car",  "Product X", "123 Main St");
         assertEquals("Car", deliveryRequest.getCar());
     }
 
     @Test
     public void testComplete() {
-        DeliveryRequest deliveryRequest = new DeliveryRequest(1, "Car", "John Doe", "Product X", "123 Main St");
+        DeliveryRequest deliveryRequest = new DeliveryRequest(1, "Car",  "Product X", "123 Main St");
         assertFalse(deliveryRequest.isCompleted());
         deliveryRequest.complete();
         assertTrue(deliveryRequest.isCompleted());
@@ -91,7 +90,7 @@ public class TestDelieverRequest {
 
     @Test
     public void testGetDriver() {
-        DeliveryRequest deliveryRequest = new DeliveryRequest(1, "Car", "John Doe", "Product X", "123 Main St");
+        DeliveryRequest deliveryRequest = new DeliveryRequest(1, "Car",  "Product X", "123 Main St");
         assertNull(deliveryRequest.getDriver());
 
         Driver driver = new Driver("Driver 1", "Car");
@@ -117,7 +116,7 @@ public class TestDelieverRequest {
     public void testSetOrder() {
         Driver driver = new Driver("Driver 1", "Car");
         assertNull(driver.getOrder());
-        DeliveryRequest deliveryRequest = new DeliveryRequest(1, "Car", "John Doe", "Product X", "123 Main St");
+        DeliveryRequest deliveryRequest = new DeliveryRequest(1, "Car", "Product X", "123 Main St");
         driver.setOrder(deliveryRequest);
 
         assertEquals(deliveryRequest, driver.getOrder());
@@ -126,7 +125,7 @@ public class TestDelieverRequest {
     @Test
     public void testDeliverOrder() {
         Driver driver = new Driver("Driver 1", "Car");
-        DeliveryRequest deliveryRequest = new DeliveryRequest(1, "Car", "John Doe", "Product X", "123 Main St");
+        DeliveryRequest deliveryRequest = new DeliveryRequest(1, "Car", "Product X", "123 Main St");
         driver.setOrder(deliveryRequest);
 
         // Deliver the order

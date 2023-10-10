@@ -1,14 +1,11 @@
 package edu.bu.met.cs665.DeliverySystem;
 
 /**
- * Name: Yibo Bao
+ * Name: Xiangyu Hu
  * Course: CS-665 Software Designs & Patterns
- * Date: 02/20/2023
- * File NameL DelieveryRequest.java
- * Description: This file is mainly about the delievery order, in this
- * file we can acces the details of orders created by the shop.
- * For example, if the order had been picked up by other driver,it
- * can not be pick up by other driver.
+ * Date: 10/10/2023
+ * File Name: DeliveryRequest.java
+ * Description: this class is about making a deliveryRequest, and find the best driver for the order.
  */
 public class DeliveryRequest {
     String product;
@@ -17,17 +14,15 @@ public class DeliveryRequest {
     Driver driver;
     boolean completed;
     int orderNumber;
-    String poster;
-    static boolean pick = false;
+    boolean pick = false;
 
 
-    public DeliveryRequest(int orderNumber, String carType, String poster, String product, String destination) {
+    public DeliveryRequest(int orderNumber, String carType, String product, String destination) {
         this.destination = destination;
         this.driver = null;
         this.orderNumber = orderNumber;
         this.carType = carType;
         this.completed = false;
-        this.poster = poster;
         this.product = product;
 
     }
@@ -40,10 +35,7 @@ public class DeliveryRequest {
     }
 
     public boolean checkStatus() {
-        if (!pick) {
-            return false;
-        }
-        return true;
+        return pick;
     }
 
     public String getCar() {
@@ -53,13 +45,6 @@ public class DeliveryRequest {
     public void complete() {
         completed = true;
     }
-
-    public void show() {
-        System.out.println("Poster: " + poster);
-        System.out.println("Order Number: " + orderNumber);
-        System.out.println("Car: " + carType);
-    }
-
     public String getProduct() {
         return null;
     }
@@ -73,6 +58,17 @@ public class DeliveryRequest {
 
     public void setCompleted(boolean completed) {
         this.completed = completed;
+    }
+    public void printInfo() {
+        System.out.println("Product need to accept: " + product);
+        System.out.println("Destination: " + destination);
+        System.out.println("Require car type: " + carType);
+        if(!completed){
+            System.out.println("Status: not complete yet");
+        }
+        else{
+            System.out.println("Status: complete");
+        }
     }
 
     public void setOrderNumber(int i) {

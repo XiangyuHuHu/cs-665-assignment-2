@@ -8,9 +8,14 @@
 
 # Assignment Overview
 Please add a paragraph or two overviewing the objectives of the assignment.
+The requirement of this assignment is to establish a shop and driver and then use deliveryRequest to find the 
+appropriate driver and complete the delivery. Therefore, you need to set the status for the driver, and 
+also set the requirements for the deliverRequest. After the driver completes the task, re-enter the available state and 
+then re-enter the list to receive orders. So there will be two lists in the shop, a driver list and an order list. 
+Convenient for both parties to hand over and distribute.
 
 # GitHub Repository Link:
-https://github.com/{YOUR_USERNAME}/cs-665-assignment-{ASSIGNMENT_NUMBER}
+https://github.com/XiangyuHuHu/cs-665-assignment-2
 
 # Implementation Description 
 
@@ -19,11 +24,29 @@ For each assignment, please answer the following:
 
 - Explain the level of flexibility in your implementation, including how new object types can
 be easily added or removed in the future.
+
+I have thought about whether driver or DeliveryRequest needs to be made into an interface, 
+it is not necessary. Extend at most. Divided into different types of driver and delivery. 
+But I feel that I have made a clear distinction in the class.
+
 - Discuss the simplicity and understandability of your implementation, ensuring that it is
 easy for others to read and maintain.
+
+First create a shop, and I imitated the general process in the main. There will be two lists in the shop. 
+All new drivers and requests will be stored in this list. Then the request is sent to the 
+appropriate driver through matching.
+
 - Describe how you have avoided duplicated code and why it is important.
+
+I have thought about setting up new extend for the driver, such as different cartypes and whether to accept long 
+distances, but these seem to be unnecessary. It can be modified and added if needed later. But I still wrote them 
+all in one. Then there is a function that specifically prints information in deliverRequest. All drivers are 
+available by default at the beginning. These states can be modified through the functions in the driver.
+
 - If applicable, mention any design patterns you have used and explain why they were
 chosen.
+I used observe pattern. It defines a one-to-many dependency between objects so that when one object changes state. So 
+when DeliveryRequest give an order. Driver can accept that and change the state. 
 
 
 # Maven Commands
