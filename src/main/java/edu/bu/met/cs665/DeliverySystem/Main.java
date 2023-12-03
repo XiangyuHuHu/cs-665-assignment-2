@@ -13,33 +13,33 @@ public class Main {
         // Create a shop
         Shop shop = new Shop("Shop A");
 
+        // Create drivers and make them observers to the shop
+        Driver driver1 = new Driver("Driver 1", "Car");
+        Driver driver2 = new Driver("Driver 2", "Scooter");
+        shop.attachObserver(driver1);
+        shop.attachObserver(driver2);
+
         // Create a delivery request
         DeliveryRequest deliveryRequest = new DeliveryRequest(1, "Car", "Product X", "123 Main St");
 
-        // Add the delivery request to the shop
+        // Add the delivery request to the shop, which will notify the drivers
         shop.addDeliveryRequest(deliveryRequest);
 
         // List the orders in the shop
-        System.out.println(deliveryRequest);
+        System.out.println("Delivery Request Details:");
         deliveryRequest.printInfo();
-
-
-        // Create drivers
-        Driver driver1 = new Driver("Driver 1", "Car");
-        Driver driver2 = new Driver("Driver 2", "Scooter");
-
-        // Add drivers to the shop
-        shop.addDriver(driver1);
-        shop.addDriver(driver2);
 
         // List the drivers in the shop
         System.out.println("\nDrivers in " + shop.getName() + ":");
+        // Assuming listDrivers() is implemented in the Shop class to print driver details
         shop.listDrivers();
 
         // Assign the delivery request to an available driver
-        List<Driver> availableDrivers = shop.getAvailableDrivers();
+        // This logic assumes the shop has a method to get available drivers
+        // Assuming setOrder() method in Driver class handles the assignment
+        List<Observer> availableDrivers = shop.getAvailableDrivers(); // Method assumed to be present in Shop
         if (!availableDrivers.isEmpty()) {
-            Driver assignedDriver = availableDrivers.get(0);
+            Driver assignedDriver = (Driver) availableDrivers.get(0);
             assignedDriver.setOrder(deliveryRequest);
             deliveryRequest.setDriver(assignedDriver);
             System.out.println("\n" + assignedDriver.getName() + " has been assigned the delivery.");
@@ -56,6 +56,4 @@ public class Main {
             System.out.println("\nDelivery could not be completed as no driver was assigned.");
         }
     }
-
-
 }

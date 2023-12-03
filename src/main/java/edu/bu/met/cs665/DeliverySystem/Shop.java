@@ -11,18 +11,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Shop {
-    public String name;
-    ArrayList<DeliveryRequest> orders = new ArrayList<DeliveryRequest>();
-    ArrayList<Driver> Drivers = new ArrayList<Driver>();
-    public static int orderNumber = 1;
-
+    private String name;
+    private ArrayList<DeliveryRequest> orders = new ArrayList<>();
+    private ArrayList<Observer> observers = new ArrayList<>();
 
     public Shop(String name) {
         this.name = name;
     }
 
-    public ArrayList<Driver> getRiders() {
-        return this.Drivers;
+    public void attachObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    public void detachObserver(Observer observer) {
+        observers.remove(observer);
+    }
+
+    private void notifyObservers(String message) {
+        for (Observer observer : observers) {
+            observer.update(this, message);
+        }
+    }
+
+    public void addDeliveryRequest(DeliveryRequest deliveryRequest) {
+        orders.add(deliveryRequest);
+        notifyObservers("New delivery request added: " + deliveryRequest.getProduct());
+    }
+
+
+    public ArrayList<Observer> getRiders() {
+        return this.observers ;
     }
 
     public ArrayList<DeliveryRequest>getOrders() {
@@ -34,23 +52,24 @@ public class Shop {
     }
 
     public void listDrivers() {
-        for (Driver driver : this.Drivers) {
-            System.out.println("Driver: " + driver.getName());
+        for (Observer observer : this.observers) {
+            if (observer instanceof Driver) {
+                Driver driver = (Driver) observer;
+                System.out.println("Driver: " + driver.getName());
+            }
         }
     }
     public void addDriver(Driver driver) {
-        this.Drivers.add(driver);
+        this.observers .add(driver);
     }
-    public void addDeliveryRequest(DeliveryRequest deliveryRequest) {
-        // Assign a unique order number to the delivery request
-        deliveryRequest.setOrderNumber(orderNumber++);
-        orders.add(deliveryRequest);
-    }
-    public List<Driver> getAvailableDrivers() {
-        List<Driver> availableDrivers = new ArrayList<>();
-        for (Driver driver : this.Drivers) {
-            if (driver.isAvailable()) {
-                availableDrivers.add(driver);
+    public List<Observer> getAvailableDrivers() {
+        List<Observer> availableDrivers = new ArrayList<>();
+        for (Observer observer : this.observers) {
+            if (observer instanceof Driver) {
+                Driver driver = (Driver) observer;
+                if (driver.isAvailable()) {
+                    availableDrivers.add(driver);
+                }
             }
         }
         return availableDrivers;

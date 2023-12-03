@@ -60,15 +60,8 @@ public class DeliveryRequest {
         this.completed = completed;
     }
     public void printInfo() {
-        System.out.println("Product need to accept: " + product);
-        System.out.println("Destination: " + destination);
-        System.out.println("Require car type: " + carType);
-        if(!completed){
-            System.out.println("Status: not complete yet");
-        }
-        else{
-            System.out.println("Status: complete");
-        }
+        System.out.println("Order Number: " + orderNumber + ", Product: " + product + ", Destination: " + destination +
+                ", Car Type: " + carType + ", Status: " + (completed ? "Completed" : "Not Completed"));
     }
 
     public void setOrderNumber(int i) {
@@ -81,4 +74,5 @@ public class DeliveryRequest {
     public Driver getDriver() {
         return driver;
     }
+
 }

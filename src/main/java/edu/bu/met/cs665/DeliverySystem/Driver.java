@@ -6,16 +6,16 @@ package edu.bu.met.cs665.DeliverySystem;
  * File Name: Driver.java
  * Description: this class is about set the driver information.
  */
-public class Driver {
-    DeliveryRequest order;
-    String name;
-    boolean isAvailable;
-    String carType;
+public class  Driver implements Observer {
+    private String name;
+    private String carType;
+    private boolean isAvailable;
+    private DeliveryRequest order;
 
-    public Driver(String nn, String cc) {
-        name = nn;
-        carType = cc.toLowerCase();
-        isAvailable = true;
+    public Driver(String name, String carType) {
+        this.name = name;
+        this.carType = carType.toLowerCase();
+        this.isAvailable = true;
     }
     public boolean isAvailable() {
         return this.isAvailable;
@@ -49,5 +49,11 @@ public class Driver {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public void update(Shop shop, String updateMessage) {
+        System.out.println("Driver " + name + " received update: " + updateMessage);
+        // Additional logic based on the update
     }
 }

@@ -1,5 +1,6 @@
 package edu.bu.met.cs665;
 
+import edu.bu.met.cs665.DeliverySystem.Observer;
 import org.junit.Test;
 
 import edu.bu.met.cs665.DeliverySystem.DeliveryRequest;
@@ -53,7 +54,7 @@ public class TestDelieverRequest {
         shop.addDriver(driver4);
         shop.addDriver(driver5);
 
-        List<Driver> availableDrivers = shop.getAvailableDrivers();
+        List<Observer> availableDrivers = shop.getAvailableDrivers();
         assertEquals(4, availableDrivers.size());
         assertTrue(availableDrivers.contains(driver1));
         assertFalse(availableDrivers.contains(driver2));
